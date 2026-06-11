@@ -1,26 +1,37 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/**
+ * Smart Serve marketing site — design tokens.
+ * Marketing pages use the dark navy (#06142b) design.
+ * Font variables are injected by the marketing layout via next/font/google.
+ */
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Marketing section globals ──────────────────────────────────────────────
+   Dark navy background (#06142b) design tokens. These are used by all
+   pages under app/(marketing)/ and do not affect the main site styles.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Custom keyframes used by the hear/page.tsx phone + waveform animations.
+   Defined globally so they work inside <style> tags in client components. */
+@keyframes phone-ring {
+  0%   { transform: rotate(0deg); }
+  15%  { transform: rotate(-12deg); }
+  30%  { transform: rotate(10deg); }
+  45%  { transform: rotate(-8deg); }
+  60%  { transform: rotate(6deg); }
+  75%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes wave-bar {
+  from { transform: scaleY(0.4); }
+  to   { transform: scaleY(1.2); }
 }
